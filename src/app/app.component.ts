@@ -1,18 +1,13 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { ButtonModule } from 'primeng/button';
-
-
-import { FormsModule } from '@angular/forms';
-import { ToggleButtonModule } from 'primeng/togglebutton';
+import { MenuBarComponent } from "./components/menu-bar/menu-bar.component";
 
 @Component({
   selector: 'app-root',
   imports: [
     RouterOutlet,
-    ButtonModule,
-    FormsModule, ToggleButtonModule
-  ],
+    MenuBarComponent
+],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
