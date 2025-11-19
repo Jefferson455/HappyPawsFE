@@ -9,10 +9,11 @@ import { PeluqueriaComponent } from "../peluqueria/peluqueria.component";
 import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
 import { GuarderiaComponent } from "../guarderia/guarderia.component";
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-detalles',
-  imports: [MatTabsModule, MatIconModule, PeluqueriaComponent, MatButtonModule, GuarderiaComponent],
+  imports: [MatTabsModule, MatIconModule, PeluqueriaComponent, MatButtonModule, GuarderiaComponent,CommonModule],
   templateUrl: './detalles.component.html',
   styleUrl: './detalles.component.css'
 })

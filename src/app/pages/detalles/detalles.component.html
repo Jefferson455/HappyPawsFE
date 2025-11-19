@@ -1,8 +1,3 @@
-<h1>{{mascota?.nombre}}</h1>
-<h3>Raza: {{mascota?.raza}}</h3>
-<h3>Especie: {{mascota?.especie}}</h3>
-<h3>Cliente: {{mascota?.nombreCliente}}</h3>
-
 <button mat-flat-button color="primary" class="margen-boton" (click)="Regresar()">
     <mat-icon mat-list-icon>arrow_back</mat-icon>Regresar
 </button>
@@ -14,8 +9,13 @@
             <mat-icon>pets </mat-icon>
             Informacion de la mascota
         </ng-template>
-
-        Content 3
+        <h3>Nombre de la mascota: {{mascota?.nombre}}</h3>
+        <h3>Raza: {{mascota?.raza}}</h3>              
+        <h3>Especie: {{mascota?.especie}}</h3>
+        <h3>Sexo: {{mascota?.sexo}}</h3>
+        <h3>Fecha de nacimiento:  {{ mascota?.fechaNacimiento | date:'yyyy-MM-dd' }}</h3>
+        <h3>Observaciones:  {{mascota?.observaciones}}</h3>
+        <h3>Cliente: {{mascota?.nombreCliente}}</h3>
     </mat-tab>
 
     <mat-tab>
