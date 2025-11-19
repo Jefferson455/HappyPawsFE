@@ -1,0 +1,62 @@
+<h2 mat-dialog-title>{{tituloAccion}} servicio de peluqueria</h2>
+<mat-dialog-content>
+    <form [formGroup]="formularioPeluqueria">
+        <mat-grid-list cols="1" rowHeight="85px">
+
+            <mat-grid-tile>
+                <mat-form-field appearance="outline">
+                    <mat-label>Precio</mat-label>
+                    <input matInput type="tel" formControlName="precio" inputmode="numeric" pattern="[0-9]*"
+                        autocomplete="off" (input)="soloNumeros($event, 'precio')">
+                    <mat-icon matSuffix>attach_money</mat-icon>
+                </mat-form-field>
+            </mat-grid-tile>
+
+            <mat-grid-tile>
+                <mat-form-field appearance="outline">
+                    <mat-label>Abono</mat-label>
+                    <input matInput type="tel" formControlName="abono" inputmode="numeric" pattern="[0-9]*"
+                        autocomplete="off" (input)="soloNumeros($event, 'abono')">
+                    <mat-icon matSuffix>payments</mat-icon>
+                    <mat-error *ngIf="formularioPeluqueria.get('abono')?.hasError('abonoMayor')">
+                        El abono no puede ser mayor que el precio
+                    </mat-error>
+
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field appearance="outline">
+                    <mat-label>Saldo</mat-label>
+                    <input matInput formControlName="saldo" readonly
+                        [value]="formularioPeluqueria.get('saldo')?.value?.toLocaleString('es-CO')">
+                    <mat-icon matSuffix>account_balance_wallet</mat-icon>
+                </mat-form-field>
+            </mat-grid-tile>
+
+
+            <mat-grid-tile>
+                <mat-form-field appearance="outline">
+                    <mat-label>Forma de Pago</mat-label>
+                    <input matInput autocomplete="off" formControlName="formaPago">
+                    <mat-icon matSuffix>credit_card</mat-icon>
+                </mat-form-field>
+            </mat-grid-tile>
+
+            <mat-grid-tile>
+                <mat-form-field appearance="outline" style="   width: 95%;
+   margin: 4px 0; /* Solo 4px arriba y abajo */
+    margin-top: 30px;">
+                    <mat-label>Observaciones</mat-label>
+                    <textarea matInput formControlName="observaciones" autocomplete="off"></textarea>
+                </mat-form-field>
+            </mat-grid-tile>
+
+        </mat-grid-list>
+    </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button mat-raised-button mat-dialog-close color="warn">Volver</button>
+    <button mat-raised-button color="primary" [disabled]="formularioPeluqueria.invalid"
+        (click)="guardar_Editar_Usuario()">{{botonAccion}}</button>
+</mat-dialog-actions>

@@ -1,0 +1,96 @@
+<h1>Mascotas</h1>
+
+<mat-card style="margin: 20px 40px 40px 40px;">
+    <mat-card-title>
+        <button mat-flat-button color="primary" class="margen-boton" (click)="abrirFormulario()">
+            <mat-icon mat-list-icon>add</mat-icon>Nueva Mascota
+        </button>
+    </mat-card-title>
+
+    <mat-divider></mat-divider>
+
+    <mat-card-content class="dashboard-card-content">
+        <br>
+        <mat-form-field appearance="fill">
+            <mat-label>Buscar</mat-label>
+            <input matInput (keyup)="aplicarFiltroTabla($event)" #input>
+        </mat-form-field>
+
+        <div class="mat-elevation-z2">
+            <div class="tabla-responsive">
+                <table mat-table [dataSource]="dataListaMascotas">
+
+                    <ng-container matColumnDef="nombre">
+                        <th mat-header-cell *matHeaderCellDef>Nombre Mascota</th>
+                        <td mat-cell *matCellDef="let element">{{element.nombre}}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="raza">
+                        <th mat-header-cell *matHeaderCellDef>Raza</th>
+                        <td mat-cell *matCellDef="let element">{{element.raza}}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="especie">
+                        <th mat-header-cell *matHeaderCellDef>Especie</th>
+                        <td mat-cell *matCellDef="let element">{{element.especie}}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="sexo">
+                        <th mat-header-cell *matHeaderCellDef>Sexo</th>
+                        <td mat-cell *matCellDef="let element">{{element.sexo}}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="fechaNacimiento">
+                        <th mat-header-cell *matHeaderCellDef>Fecha Nacimiento</th>
+                        <td mat-cell *matCellDef="let element">
+                            {{ element.fechaNacimiento | date:'yyyy-MM-dd' }}
+                        </td>
+                    </ng-container>
+
+
+                    <ng-container matColumnDef="observaciones">
+                        <th mat-header-cell *matHeaderCellDef>Observaciones</th>
+                        <td mat-cell *matCellDef="let element">{{element.observaciones}}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="cliente">
+                        <th mat-header-cell *matHeaderCellDef>Cliente</th>
+                        <td mat-cell *matCellDef="let element">{{element.nombreCliente}}</td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="Ver detalles">
+                        <th mat-header-cell *matHeaderCellDef>Ver detalles</th>
+                        <td mat-cell *matCellDef="let element">
+                            <button mat-icon-button color="primary" (click)="detalles(element)">
+                                <mat-icon mat-list-icon>visibility</mat-icon>
+                            </button>
+                        </td>
+                    </ng-container>
+
+                    <ng-container matColumnDef="acciones">
+                        <th mat-header-cell *matHeaderCellDef>acciones</th>
+                        <td mat-cell *matCellDef="let element">
+
+                            <button mat-icon-button color="primary" (click)="editarMascota(element)">
+                                <mat-icon mat-list-icon>edit</mat-icon>
+                            </button>
+                            <button mat-icon-button color="warn" (click)="eliminar(element)">
+                                <mat-icon mat-list-icon>delete</mat-icon>
+                            </button>
+                        </td>
+                    </ng-container>
+
+                    <tr mat-header-row *matHeaderRowDef="columnasTabla"></tr>
+                    <tr mat-row *matRowDef="let row; columns:columnasTabla;"></tr>
+                    <tr class="mat-row" *matNoDataRow>
+                        <td class="mat-cell" colspan="4">No hay datos que coincidan con el filtro "{{input.value}}"</td>
+                    </tr>
+                </table>
+            </div>
+            <mat-paginator [pageSizeOptions]="[5,10,20]" showFirstLastButtons="">
+            </mat-paginator>
+        </div>
+
+    </mat-card-content>
+
+</mat-card>

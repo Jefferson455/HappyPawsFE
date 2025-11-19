@@ -1,0 +1,23 @@
+table {
+  width: 100%;
+  min-width: 600px;
+}
+
+.margen-boton {
+  margin-top: 8px;
+  margin-right: 16px;
+  margin-bottom: 8px;
+  margin-left: 16px;
+}
+
+.tabla-responsive {
+  width: 100%;
+  overflow-x: auto;
+}
+
+h1 {
+  margin: 20px 0px 0px 40px;
+}
+mat-card {
+  margin: 20px 40px 40px 40px;
+}

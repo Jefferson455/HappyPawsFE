@@ -1,0 +1,69 @@
+<h2 mat-dialog-title>{{tituloAccion}} Cliente</h2>
+<mat-dialog-content>
+    <form [formGroup]="formularioMascota">
+        <mat-grid-list cols="1" rowHeight="85px">
+            <mat-grid-tile>
+                <mat-form-field appearance="outline">
+                    <mat-label>Nombre Mascota</mat-label>
+                    <input matInput autocomplete="off" formControlName="nombreMascota">
+                    <mat-icon matSuffix>pets</mat-icon>
+                </mat-form-field>
+            </mat-grid-tile>
+
+            <mat-grid-tile>
+                <mat-form-field appearance="outline">
+                    <mat-label>Raza</mat-label>
+                    <input matInput autocomplete="off" formControlName="raza">
+                    <mat-icon matSuffix>fingerprint</mat-icon>
+                </mat-form-field>
+            </mat-grid-tile>
+
+            <mat-grid-tile>
+                <mat-form-field appearance="outline">
+                    <mat-label>Especie</mat-label>
+                    <input matInput autocomplete="off" formControlName="especie">
+                    <mat-icon matSuffix>emoji_nature</mat-icon>
+                </mat-form-field>
+            </mat-grid-tile>
+
+            <mat-grid-tile>
+                <mat-form-field appearance="outline">
+                    <mat-label>Sexo</mat-label>
+                    <input matInput autocomplete="off" formControlName="sexo">
+                    <mat-icon matSuffix>wc</mat-icon>
+                </mat-form-field>
+            </mat-grid-tile>
+
+            <mat-grid-tile>
+                <mat-form-field appearance="outline">
+                    <mat-label>Fecha Nacimiento</mat-label>
+                    <input matInput [matDatepicker]="picker" formControlName="fechaNacimiento" autocomplete="off">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+            </mat-grid-tile>
+          <mat-grid-tile>
+                <mat-form-field appearance="outline">
+                    <mat-label>Observaciones</mat-label>
+                    <textarea matInput formControlName="observaciones" autocomplete="off"></textarea>
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field appearance="outline">
+                    <mat-label>Cliente</mat-label>
+                    <mat-select formControlName="idCliente">
+                        <mat-option *ngFor="let item of listaClientes" [value]="item.id">
+                            {{item.nombre}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button mat-raised-button mat-dialog-close color="warn">Volver</button>
+    <button mat-raised-button color="primary" [disabled]="formularioMascota.invalid"
+        (click)="guardar_Editar()">{{botonAccion}}</button>
+</mat-dialog-actions>
