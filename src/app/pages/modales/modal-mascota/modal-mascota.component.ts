@@ -82,7 +82,7 @@ export class ModalMascotaComponent implements OnInit {
         sexo: this.mascota.sexo,
         fechaNacimiento: this.mascota.fechaNacimiento,
         observaciones: this.mascota.observaciones,
-        idCliente:  this.mascota.cliente.id        
+        idCliente:  this.mascota.clienteId       
       });    
     } else {
       this.editar = false;

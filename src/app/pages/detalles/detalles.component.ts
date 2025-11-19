@@ -10,6 +10,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
 import { GuarderiaComponent } from "../guarderia/guarderia.component";
 import { CommonModule } from '@angular/common';
+import { ModalMascotaComponent } from '../modales/modal-mascota/modal-mascota.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-detalles',
@@ -22,10 +24,14 @@ export class DetallesComponent implements OnInit {
   constructor(private route: ActivatedRoute,
     private mascotaService: MascotaService,
     private utilidades: UtilidadesService,
-    private router: Router
-  ) { }
+    private router: Router,
+    private dialog: MatDialog
+  ) { 
+        
+  }
+  id = 0;
   ngOnInit(): void {
-    const id = this.route.snapshot.paramMap.get('id');
+   const id = this.route.snapshot.paramMap.get('id');
     this.obtenerMascota(id)
   }
 
@@ -46,4 +52,16 @@ export class DetallesComponent implements OnInit {
     this.router.navigate(['/Mascotas']);
   }
 
+  editarMascota(mascota: Mascota) {
+    mascota.editar = true;
+    this.dialog
+      .open(ModalMascotaComponent, {
+        disableClose: true,
+        data: mascota,
+      })
+      .afterClosed()
+      .subscribe((resultado) => {
+        if (resultado === true) this.obtenerMascota(this.id);
+      });
+  }
 }

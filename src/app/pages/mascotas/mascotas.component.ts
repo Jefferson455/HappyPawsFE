@@ -109,12 +109,12 @@ export class MascotasComponent implements OnInit {
         if (resultado === true) this.obtenerMascotas();
       });
   }
+
   obtenerMascotas() {
     this.mascotaService.getMascotas().subscribe({
       next: (data) => {
         if (data) {
           this.dataInicio = data;
-          console.log(data)
           this.dataListaMascotas.data = this.dataInicio;
         }
         else {
