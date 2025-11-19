@@ -142,7 +142,6 @@ export class ModalGuarderiaComponent implements OnInit {
       mascotaId: this.guarderia.mascotaId
     };
     if (this.editar) {
-      console.log(_guarderia);
       this.guarderiaService.actualizarGuarderia(this.guarderia.id, _guarderia).subscribe({
         next: (res) => {
           this.utilidades.mostrarAlerta('Servicio de guarderia modificado correctamente.', 'Listo!')
