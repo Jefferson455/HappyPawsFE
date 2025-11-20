@@ -1,0 +1,67 @@
+<h2>Informes</h2>
+
+<form [formGroup]="filtroForm" class="filtros">
+  <mat-form-field appearance="outline">
+  <mat-label>Fecha inicio</mat-label>
+  <input matInput type="date" formControlName="fechaInicio" />
+</mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Fecha fin</mat-label>
+    <input matInput type="date" formControlName="fechaFin">
+  </mat-form-field>
+
+<mat-form-field appearance="outline">
+  <mat-label>Tipo</mat-label>
+  <mat-select formControlName="tipoServicio">
+    <mat-option value="todos">Todos</mat-option>
+    <mat-option value="guarderia">guarderia</mat-option>
+    <mat-option value="peluqueria">peluqueria</mat-option>
+  </mat-select>
+</mat-form-field>
+
+  <button mat-raised-button color="primary" (click)="buscar()">Buscar</button>
+</form>
+
+<hr>
+
+<div *ngIf="resultados.length > 0">
+
+  <h3>Resultados</h3>
+
+  <table mat-table [dataSource]="resultados" class="mat-elevation-z8">
+    <ng-container matColumnDef="fecha">
+      <th mat-header-cell *matHeaderCellDef>Fecha</th>
+      <td mat-cell *matCellDef="let row">{{ row.fecha | date:'dd/MM/yyyy' }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="mascota">
+      <th mat-header-cell *matHeaderCellDef>Mascota</th>
+      <td mat-cell *matCellDef="let row">{{ row.mascota }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="servicio">
+      <th mat-header-cell *matHeaderCellDef>Servicio</th>
+      <td mat-cell *matCellDef="let row">{{ row.servicio }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="precio">
+      <th mat-header-cell *matHeaderCellDef>Precio</th>
+      <td mat-cell *matCellDef="let row">{{ row.precio}}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="['fecha','mascota','servicio','precio']"></tr>
+    <tr mat-row *matRowDef="let row; columns: ['fecha','mascota','servicio','precio']"></tr>
+
+  </table>
+
+  <div class="totales">
+    <p><strong>Total servicios:</strong> {{ totalServicios }}</p>
+    <p><strong>Total ingresos:</strong> {{ totalIngresos}}</p>
+  </div>
+
+</div>
+
+<div *ngIf="resultados.length === 0">
+  <p>No hay resultados para este rango de fechas.</p>
+</div>
