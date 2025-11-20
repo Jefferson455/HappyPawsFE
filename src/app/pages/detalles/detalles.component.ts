@@ -29,14 +29,14 @@ export class DetallesComponent implements OnInit {
   ) { 
         
   }
-  id = 0;
+  id!: number ;
   ngOnInit(): void {
-   const id = this.route.snapshot.paramMap.get('id');
-    this.obtenerMascota(id)
+     this.id = Number(this.route.snapshot.paramMap.get('id'));
+    this.obtenerMascota()
   }
 
-  obtenerMascota(id: any) {
-    this.mascotaService.getMascota(id).subscribe({
+  obtenerMascota() {
+    this.mascotaService.getMascota(this.id).subscribe({
       next: (data) => {
         if (data) {
           this.mascota = data;
@@ -77,7 +77,8 @@ calcularEdad(fechaNacimiento?: string | Date): number {
       })
       .afterClosed()
       .subscribe((resultado) => {
-        if (resultado === true) this.obtenerMascota(this.id);
+        console.log(resultado)
+        if (resultado === true) this.obtenerMascota();
       });
   }
 }
