@@ -14,6 +14,9 @@
         <h3>Especie: {{mascota?.especie}}</h3>
         <h3>Sexo: {{mascota?.sexo}}</h3>
         <h3>Fecha de nacimiento: {{ mascota?.fechaNacimiento | date:'yyyy-MM-dd' }}</h3>
+        <h3>
+  Edad: {{ calcularEdad(mascota?.fechaNacimiento) }} años
+</h3>
         <h3>Observaciones: {{mascota?.observaciones}}</h3>
         <h3>Cliente: {{mascota?.nombreCliente}}</h3>
         <button mat-flat-button color="primary" class="margen-boton" (click)="editarMascota(mascota!)">

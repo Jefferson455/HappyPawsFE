@@ -1,0 +1,10 @@
+.filtros {
+  display: flex;
+  gap: 16px; /* Espacio entre campos */
+  align-items: center;
+  flex-wrap: wrap; /* Para que no se rompa en pantallas pequeñas */
+}
+
+.filtros mat-form-field {
+  width: 200px; /* Ajusta el ancho si quieres */
+}

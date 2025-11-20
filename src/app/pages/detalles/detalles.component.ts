@@ -51,6 +51,22 @@ export class DetallesComponent implements OnInit {
   Regresar(){
     this.router.navigate(['/Mascotas']);
   }
+calcularEdad(fechaNacimiento?: string | Date): number {
+  if (!fechaNacimiento) return 0; // si viene undefined retorna 0
+
+  const fecha = new Date(fechaNacimiento);
+  const hoy = new Date();
+
+  let edad = hoy.getFullYear() - fecha.getFullYear();
+  const mes = hoy.getMonth() - fecha.getMonth();
+
+  if (mes < 0 || (mes === 0 && hoy.getDate() < fecha.getDate())) {
+    edad--;
+  }
+
+  return edad;
+}
+
 
   editarMascota(mascota: Mascota) {
     mascota.editar = true;
